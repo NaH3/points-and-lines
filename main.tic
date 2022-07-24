@@ -1,0 +1,37 @@
+-- title:   pnl
+-- author:  NaH3
+-- desc:    points and lines
+-- version: v1.2
+-- script:  lua
+
+function sqr(n)
+	return n*n
+end
+
+px={}
+py={}
+c={}
+for i=0,100,1 do
+	px[i]=math.random(0,240)
+	py[i]=math.random(0,136)
+	c[i]=math.random(1,15)
+end
+
+function TIC()
+	cls(0)
+	mx,my=mouse()
+	mx=(mx/240)*50
+	my=math.floor((my/136)*10)
+	for i=0,100,1 do
+		for j=0,100,1 do
+			n=0
+			if i~=j then
+				d=math.sqrt(sqr(px[j]-px[i])+sqr(py[j]-py[i]))
+				if d<mx and n~=my then
+					line(px[i],py[i],px[j],py[j],c[i])
+					n=n+1
+				end
+			end
+		end
+	end
+end
